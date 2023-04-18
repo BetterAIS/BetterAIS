@@ -24,6 +24,8 @@ class AuthenticationService:
         encoded_jwt = jwt.encode(to_encode, self._core.SECRET_KEY, algorithm=self._core.JWT_ALGORITHM)
         return encoded_jwt
 
+    # def create_
+
     def verify_password(self, plain_password: str, hashed_password: str) -> bool:
         """
         Verify the given plain password matches the given hashed password.
