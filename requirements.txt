@@ -3,3 +3,6 @@ uvicorn[standard]==0.21.1
 pydantic == 1.10.7
 tortoise-orm[asyncpg] == 0.19.3
 pyjwt == 2.6.0
+passlib[bcrypt] == 1.7.4
+pay_by_square == 0.2.0
+python-ldap == 3.4.3

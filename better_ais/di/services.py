@@ -1,6 +1,6 @@
 from functools import cached_property
 from better_ais.config.core import CoreSettings
-from better_ais.services.authentication import AuthenticationService
+from better_ais.controllers.authentication import AuthenticationService
 
 class ServiceContainer:
     def __init__(self, core: CoreSettings):

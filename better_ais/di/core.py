@@ -26,19 +26,13 @@ class Core:
         await Tortoise.init(
             db_url=self.configuration.postgres_settings.connection_string,
             modules={'models': [
-                'better_ais.dao.postgres.user.model',
-                'better_ais.dao.postgres.user_roles.model',
-                'better_ais.dao.postgres.user_settings.model',
-                'better_ais.dao.postgres.user_subjects.model',
-                'better_ais.dao.postgres.timetable.model',
-                'better_ais.dao.postgres.subject.model',
-                'better_ais.dao.postgres.shared_note.model',
-                'better_ais.dao.postgres.role.model',
-                'better_ais.dao.postgres.post.model',
-                'better_ais.dao.postgres.mail.model',
-                'better_ais.dao.postgres.homework.model',
-                'better_ais.dao.postgres.document.model',
-                'better_ais.dao.postgres.comment.model',
+                'better_ais.repositories.postgres.mails.model',
+                'better_ais.repositories.postgres.posts.model',
+                'better_ais.repositories.postgres.roles.model',
+                'better_ais.repositories.postgres.users.model',
+                'better_ais.repositories.postgres.documents.model',
+                'better_ais.repositories.postgres.shared_notes.model',
+                'better_ais.repositories.postgres.user_settings.model',
             ]}
         )
         
