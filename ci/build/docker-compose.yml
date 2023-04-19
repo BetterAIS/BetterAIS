@@ -17,7 +17,7 @@ services:
     image: better-ais
     container_name: better_ais
     env_file:
-      - .default.env # FIXME: shit code. It must be as env var
+      - .env # FIXME: It must be as env var
     ports:
       - 8000:8000
     depends_on:
