@@ -1,0 +1,24 @@
+version: '3.11'
+
+services:
+  db: 
+    image: postgres:12.2
+    container_name: db
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    # volumes:
+    #   - ./postgres:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+  
+  better_ais:
+    image: better-ais
+    container_name: better_ais
+    env_file:
+      - .default.env # FIXME: shit code. It must be as env var
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
