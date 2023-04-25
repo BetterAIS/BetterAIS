@@ -25,7 +25,6 @@ SOFTWARE.
 import pydantic
 
 from ..model import User
-from better_ais.di import core
 from ldap3 import Server, Connection, ALL, Entry
 
 
@@ -35,11 +34,14 @@ class InvalidLoginOrPassword(Exception):
 
 
 class Ldap3Auth:
+    def __init__(self, ldap_settings):
+        self.ldap_settings = ldap_settings
+    
     def authenticate_ldap(self, login, password):
-        basedn = core.configuration.ldap_settings.basedn
-        attrs = core.configuration.ldap_settings.attrs
+        basedn = self.ldap_settings.basedn
+        attrs = self.ldap_settings.attrs
 
-        server = Server(core.configuration.ldap_settings.server, get_info=ALL)
+        server = Server(self.ldap_settings.server, get_info=ALL)
         conn = Connection(server, f"uid={login},{basedn}", password)
 
         try:

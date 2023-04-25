@@ -4,7 +4,7 @@ APP_PATH = ./better_ais
 APP_VERSION = 0.0.1
 APP_DOCKER_FILE = ./ci/build/Dockerfile
 APP_DOCKER_IMAGE = better-ais
-APP_DOTENV_FILE = './ci/build/.default.env'
+APP_DOTENV_FILE = './ci/build/.env'
 
 DATE = $(shell date "+%Y-%m-%d %H:%M:%S")
 COMMIT_SHA = $(shell git rev-parse HEAD)

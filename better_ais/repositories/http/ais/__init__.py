@@ -1,5 +1,4 @@
-raise NotImplementedError('NOT IMPLEMENTED')
+from .model import Mail, Document, Homework, TimeTable
+from .repo import AISRepository
 
-
-# This module will be mocked. 
-# 
+__all__ = ['Mail', 'Document', 'Homework', 'AISRepository', 'TimeTable']

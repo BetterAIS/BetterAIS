@@ -1,3 +1,4 @@
+from typing import Any
 from pydantic import BaseModel
 
 class AccUserResidence(BaseModel):
@@ -25,12 +26,12 @@ class AccUser(BaseModel):
     payment: AccUserPayment
     
     @staticmethod
-    def from_dataclass(dataclass):
-        AccUser(
+    def from_dataclass(dс: Any):
+        return AccUser(
             residence = AccUserResidence(
-                **dataclass.residence.__dict__
+                **dс.residence.__dict__
             ),
             payment = AccUserPayment(
-                **dataclass.payment.__dict__
+                **dс.payment.__dict__
             )
         )
