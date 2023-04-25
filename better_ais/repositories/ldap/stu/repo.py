@@ -4,13 +4,15 @@ from .source.auth_ldap import Ldap3Auth
 from .model import User
 
 
-class AccommodationRepository:
+class LdapRepository:
+    def __init__(self, ldap_settings):
+        self.ldap_settings = ldap_settings
+    
     async def create(self, **kwargs) -> None:
         raise NotImplementedError
 
     async def get(self, login: str, password: str) -> User:
-        loop = asyncio.get_running_loop()
-        return await loop.run_in_executor((login, password), Ldap3Auth().authenticate_ldap)
+        return await asyncio.to_thread(Ldap3Auth(self.ldap_settings).authenticate_ldap, login, password)
 
     async def filter(self, **kwargs) -> None:
         raise NotImplementedError

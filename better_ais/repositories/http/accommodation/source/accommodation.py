@@ -58,7 +58,7 @@ class AccUser:
 
 
 class AccommodationSource(BaseParser):
-    def __init__(self, login: str = None, password: str = None) -> None:
+    def __init__(self, login: str, password: str) -> None:
         super().__init__(asyncio.get_event_loop())
         self._login: str = login
         self._password: str = password
@@ -110,7 +110,7 @@ class AccommodationSource(BaseParser):
         async with self._session.get("https://ubytovanie.stuba.sk/?module=Reservation&submodule=reservation&mode=edit") as response:
             response_text = await response.text()
         
-        dom = etree.HTML(response_text.encode('utf-8'))
+        dom = etree.HTML(response_text.encode('utf-8')) # type: ignore
 
         value = dom.xpath('//table[@class="evid_small"]')[0]
         residence = value.xpath('//tr[2]/td[1]/text()')[0].strip().split(' ')[::-1]
@@ -140,7 +140,7 @@ class AccommodationSource(BaseParser):
         async with self._session.get("https://ubytovanie.stuba.sk/?module=Reservation&submodule=payment&template=payment") as response:
             response_text = await response.text()
         
-        dom = etree.HTML(response_text)
+        dom = etree.HTML(response_text) # type: ignore
         iban = dom.xpath('//form[@name="form"]/table/tr/td/table[1]/tr[3]/td/b/text()')[0].strip()
         swift = dom.xpath('//form[@name="form"]/table/tr/td/table[1]/tr[4]/td/b/text()')[0].strip()
         variable_symbol = dom.xpath('//form[@name="form"]/table/tr/td/table[1]/tr[6]/td[2]/b/span/text()')[0].strip()

@@ -1,5 +1,5 @@
-from .core import core
+from .core import core_di
 
 __all__ = [
-    "core",
+    "core_di",
 ]

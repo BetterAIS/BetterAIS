@@ -5,8 +5,7 @@ from tortoise import fields
 class Mail(Model):
     id = fields.IntField(pk=True)
     user = fields.ForeignKeyField("models.User", related_name="mails")
-    recipient = fields.ForeignKeyField("models.User", related_name="received_mails")
-    sender = fields.ForeignKeyField("models.User", related_name="sent_mails")
+    sender = fields.CharField(max_length=255)
     subject = fields.CharField(max_length=255)
     body = fields.TextField()
     is_read = fields.BooleanField()

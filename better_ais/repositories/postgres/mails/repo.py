@@ -12,7 +12,12 @@ class MailRepository:
     async def get(self, **kwargs) -> Mail:
         return await self.model.get(**kwargs)
 
-    async def filter(self, **kwargs) -> QuerySet:
+    async def get_all(self, **kwargs) -> list[Mail]:
+        return [
+            i async for i in self.model.filter(**kwargs)
+        ]
+
+    async def filter(self, **kwargs) -> QuerySet[Mail]:
         return self.model.filter(**kwargs)
 
     async def update(self, instance: Mail, **kwargs) -> None:

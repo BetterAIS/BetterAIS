@@ -1,5 +1,6 @@
 from better_ais.di.configuration import Configuration
-from better_ais.di.services import ServiceContainer
+from better_ais.di.repositories import RepositoriesContainer
+from better_ais.di.controllers import ControllersContainer
 from functools import cached_property
 from tortoise import Tortoise
 from fastapi import FastAPI
@@ -12,15 +13,19 @@ class Core:
         return Configuration()
 
     @cached_property
-    def services(self):
-        return ServiceContainer(self.configuration.core_settings)
+    def repositories(self):
+        return RepositoriesContainer(self.configuration.core_settings, self.configuration.openai_settings, self.configuration.ldap_settings)
+
+    @cached_property
+    def controllers(self):
+        return ControllersContainer(self.repositories, self.configuration.core_settings)
 
     @cached_property
     def app(self) -> FastAPI:
         return FastAPI(
             debug=self.configuration.core_settings.DEBUG,
         )
-    
+
     @cached_property
     async def database(self):
         await Tortoise.init(
@@ -32,11 +37,10 @@ class Core:
                 'better_ais.repositories.postgres.users.model',
                 'better_ais.repositories.postgres.documents.model',
                 'better_ais.repositories.postgres.shared_notes.model',
-                'better_ais.repositories.postgres.user_settings.model',
             ]}
         )
         
         await Tortoise.generate_schemas()
         return Tortoise
 
-core = Core()
+core_di = Core()

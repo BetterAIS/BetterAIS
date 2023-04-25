@@ -6,8 +6,9 @@ class AccommodationRepository:
     async def create(self, **kwargs) -> None:
         raise NotImplementedError
 
-    async def get(self, login: str, password: str) -> AccUser:
+    async def get(self, login: str, password: str) -> AccUser | None:
         source = AccommodationSource(login, password)
+        await source.get_session()
         await source.login()
         return AccUser.from_dataclass(await source.get_user())
 
