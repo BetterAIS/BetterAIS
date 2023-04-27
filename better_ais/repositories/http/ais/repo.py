@@ -1,4 +1,4 @@
-from .model import Mail, Document, Homework
+from .model import Mail, Document, Homework, TimeTable
 from .source import AISClient
 
 class AISRepository(object):
@@ -51,11 +51,15 @@ class AISRepository(object):
             ))
         return resilt
 
-    async def get_time_table(self, user_id: int, username: str, password: str) -> list[dict]:
+    async def get_time_table(self, user_id: int, username: str, password: str) -> list[TimeTable]:
         """Get AIS time table.
         """
         tt = await self.ais_client.get_time_table(username, password)
+        resilt = []
         for day in tt:
-            day["user"] = user_id
+            resilt.append(TimeTable(
+                user=user_id,
+                **day
+            ))
         
-        return tt
+        return resilt

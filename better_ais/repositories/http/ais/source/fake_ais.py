@@ -65,7 +65,7 @@ class FakeAISClient(AISClient):
             'created_at': datetime.datetime.now(),
             'updated_at': datetime.datetime.now(),
         }
-    
+
     async def __gen_document(self, username: str):
         base_prompt = "You'r username is '" + username + "'. You have a new document. "
         
@@ -94,8 +94,8 @@ class FakeAISClient(AISClient):
         }
 
     async def get_new_mails(self, username: str, password: str):
-        if random.randint(0, 5):
-            return []
+        # if random.randint(0, 5):
+        #     return []
         
         new_mails = []
         for _ in range(random.randint(1, 5)):
@@ -104,8 +104,8 @@ class FakeAISClient(AISClient):
         return new_mails
 
     async def get_new_documents(self, username: str, password: str):
-        if random.randint(0, 5):
-            return []
+        # if random.randint(0, 5):
+        #     return []
         
         new_documents = []
         for _ in range(random.randint(1, 5)):
@@ -114,8 +114,8 @@ class FakeAISClient(AISClient):
         return new_documents
 
     async def get_new_homeworks(self, username: str, password: str):
-        if random.randint(0, 5):
-            return []
+        # if random.randint(0, 5):
+        #     return []
         
         new_homeworks = []
         for _ in range(random.randint(1, 5)):
@@ -126,37 +126,37 @@ class FakeAISClient(AISClient):
     async def get_time_table(self, username: str, password: str):
         mock = [
             {
-                "day": "Pondelok",
+                "day": 0,
                 "lesson": "1. hodina",
-                "time": "8:00 - 8:45",
+                "time": 8,
                 "teacher": "Ing. Jonathan Joestar, PhD.",
                 "room": "D2",
             }, 
             {
-                "day": "Pondelok",
+                "day": 0,
                 "lesson": "2. hodina",
-                "time": "8:55 - 9:40",
+                "time": 2,
                 "teacher": "Ing. George Joestar, PhD.",
                 "room": "D2",
             },
             {
-                "day": "Utorok",
+                "day": 1,
                 "lesson": "1. hodina",
-                "time": "8:00 - 8:45",
+                "time": 1,
                 "teacher": "Ing. Jonathan Joestar, PhD.",
                 "room": "D2",
             },
             {
-                "day": "Utorok",
+                "day": 1,
                 "lesson": "2. hodina",
-                "time": "8:55 - 9:40",
+                "time": 3,
                 "teacher": "Ing. George Joestar, PhD.",
                 "room": "D2",
             },
             {
-                "day": "Piatok",
+                "day": 2,
                 "lesson": "1. hodina",
-                "time": "8:00 - 8:45",
+                "time": 1,
                 "teacher": "Ing. Jonathan Joestar, PhD.",
                 "room": "D2",
             }

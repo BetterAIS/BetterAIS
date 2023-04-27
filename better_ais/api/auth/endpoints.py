@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+
+from better_ais.controllers.authentication import TokenData
 from .models import Login, TokenPair
 from better_ais.di.core import core_di
 
@@ -41,3 +43,7 @@ async def revoke(token: str) -> dict:
         )
     return {"message": "Token revoked"}
 
+
+@auth_router.get("/verify")
+async def verify(token_payload: TokenData = Depends(core_di.controllers.authentication.get_token_payload)) -> bool:
+    return True
