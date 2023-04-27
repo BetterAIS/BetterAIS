@@ -36,8 +36,8 @@ class Homework(BaseModel):
 
 class TimeTable(BaseModel):
     user: int
-    day: str
+    day: int
     lesson: str
-    time: str
+    time: int
     teacher: str
     room: str
