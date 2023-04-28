@@ -27,7 +27,7 @@ async def get_mails(token_payload: TokenData = Depends(core_di.controllers.authe
 
 
 @ais_router.get("/documents/new")
-async def get_new_documents(token_payload: TokenData = Depends(core_di.controllers.authentication.get_token_payload)) -> list[Document]:
+async def get_documents(token_payload: TokenData = Depends(core_di.controllers.authentication.get_token_payload)) -> list[Document]:
     try:
         return await core_di.controllers.users.get_user_new_documents(token_payload.login, token_payload.password)
     except Exception:

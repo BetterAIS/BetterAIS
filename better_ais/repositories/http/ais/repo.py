@@ -30,7 +30,7 @@ class AISRepository(object):
     async def get_documents(self, user_id: int, username: str, password: str) -> list[Document]:
         """Get AIS documents.
         """
-        new_documents = await self.ais_client.get_new_documents(username, password)
+        new_documents = await self.ais_client.get_documents(username, password)
         resilt = []
         for document in new_documents:
             resilt.append(Document(
@@ -42,7 +42,7 @@ class AISRepository(object):
     async def get_homeworks(self, user_id: int, username: str, password: str) -> list[Homework]:
         """Get AIS homeworks.
         """
-        new_homeworks = await self.ais_client.get_new_homeworks(username, password)
+        new_homeworks = await self.ais_client.get_homeworks(username, password)
         resilt = []
         for homework in new_homeworks:
             resilt.append(Homework(
